@@ -1,0 +1,209 @@
+
+register_01:
+  detail: '用户名、密码、app_key正确填写，注册成功'
+  method: POST
+#  请求数据
+  datas:
+    s: App.User.Register
+    app_key: '42B8E00160EF835C85934EC4306115A4'
+    username: '张三'
+    password: 'e10adc3949ba59abbe56e057f20f883e'
+    ext_info:
+#响应数据
+  ret: 200
+  err_code: 0
+  err_msg: ''
+  uuid: true
+  msg: true
+
+register_02:
+  detail: '用户名、密码、app_key、扩增信息正确填写，注册成功'
+  method: POST
+  datas:
+    s: App.User.Register
+    app_key: '42B8E00160EF835C85934EC4306115A4'
+    username: 'aeadryyitujyax'
+    password: 'e10adc3949ba59abbe56e057f20f883e'
+    ext_info:
+       identity: student
+  ret: 200
+  err_code: 0
+  err_msg: ''
+  uuid: true
+  msg: true
+
+
+register_03:
+  detail: '用户名字符长度为1，注册成功'
+  method: POST
+  datas:
+    s: App.User.Register
+    app_key: '42B8E00160EF835C85934EC4306115A4'
+    username: '数'
+    password: 'e10adc3949ba59abbe56e057f20f883e'
+  ret: 200
+  err_code: 0
+  err_msg: ''
+  uuid: true
+  msg: true
+
+register_04:
+  detail: '用户名字符长度为50，注册成功'
+  method: POST
+  datas:
+    s: App.User.Register
+    app_key: '42B8E00160EF835C85934EC4306115A4'
+    username: 'tqwertiuiopaydfghjkqoxvbnmqwertyuiopasdfghjklzxkfd'
+    password: 'e10adc3949ba59abbe56e057f20f883e'
+  ret: 200
+  err_code: 0
+  err_msg: ''
+  uuid: true
+  msg: true
+
+register_05:
+  detail: 'app_key长度为31位时，注册失败'
+  method: POST
+  datas:
+    s: App.User.Register
+    app_key: '42B8E00160EF835C85934EC4306115A'
+    username: '王五'
+    password: 'e10adc3949ba59abbe56e057f20f883e'
+  ret: 400
+  data:
+    {}
+  msg: true
+
+
+register_06:
+  detail: 'app_key为空时，注册失败'
+  method: POST
+  datas:
+    s: App.User.Register
+    app_key: ''
+    username: '王五'
+    password: 'e10adc3949ba59abbe56e057f20f883e'
+  ret: 400
+  data:
+    {}
+  msg: true
+
+register_07:
+  detail: '用户名为空时，注册失败'
+  method: POST
+  datas:
+    s: App.User.Register
+    app_key: '42B8E00160EF835C85934EC4306115A4'
+    username: ''
+    password: 'e10adc3949ba59abbe56e057f20f883e'
+  ret: 400
+  data:
+    {}
+  msg: true
+
+register_08:
+  detail: '密码为空时，注册失败'
+  method: POST
+  datas:
+    s: App.User.Register
+    app_key: '42B8E00160EF835C85934EC4306115A4'
+    username: '王五'
+    password:
+  ret: 400
+  data:
+    {}
+  msg: true
+
+register_09:
+  detail: '用户名字符长度为51位时，注册失败'
+  method: POST
+  datas:
+    s: App.User.Register
+    app_key: '42B8E00160EF835C85934EC4306115A4'
+    username: 'qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbc'
+    password: 'e10adc3949ba59abbe56e057f20f883e'
+  ret: 400
+  data:
+    {}
+  msg: true
+
+register_10:
+  detail: '密码加密后长度为16位时，注册失败'
+  method: POST
+  datas:
+    s: App.User.Register
+    app_key: '42B8E00160EF835C85934EC4306115A4'
+    username: '小何'
+    password: 'e10adc3949ba59ab'
+  ret: 400
+  data:
+    {}
+  msg: true
+
+register_11:
+  detail: '密码未加密，注册失败'
+  method: POST
+  datas:
+    s: App.User.Register
+    app_key: '42B8E00160EF835C85934EC4306115A4'
+    username: '小何'
+    password: '123456'
+  ret: 400
+  data:
+    {}
+  msg: true
+
+register_12:
+  detail: '密码长度为32位并且大写时，注册失败'
+  method: POST
+  datas:
+    s: App.User.Register
+    app_key: '42B8E00160EF835C85934EC4306115A4'
+    username: '小何'
+    password: 'E10ADC3949BA59ABBE56E057F20F883E'
+  ret: 400
+  data:
+    {}
+  msg: true
+
+register_13:
+  detail: '用户名扩展信息格式为字典，注册失败'
+  method: GET
+  datas:
+    s: App.User.Register
+    app_key: '42B8E00160EF835C85934EC4306115A4'
+    username: '小军军'
+    password: 'e10adc3949ba59abbe56e057f20f883e'
+    ext_info:
+        identity: "student"
+  ret: 400
+  data:
+    {}
+  msg: true
+
+register_14:
+  detail: '接口地址错误，注册失败'
+  method: POST
+  datas:
+    s: App.User.Regist
+    app_key: '42B8E00160EF835C85934EC4306115A4'
+    username: '小军军'
+    password: 'e10adc3949ba59abbe56e057f20f883e'
+  ret: 404
+  data:
+    {}
+  msg: true
+
+register_15:
+  detail: '用户名已存在，注册失败'
+  method: POST
+  datas:
+    s: App.User.Register
+    app_key: '42B8E00160EF835C85934EC4306115A4'
+    username: '张三'
+    password: 'e10adc3949ba59abbe56e057f20f883e'
+  ret: 200
+  err_code: 1
+  err_msg: '用户已注册，不能重复注册'
+
+

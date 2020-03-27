@@ -1,0 +1,2 @@
+register=http://hd215.api.yesapi.cn
+login=http://hd215.api.yesapi.cn/?s=App.User.Login

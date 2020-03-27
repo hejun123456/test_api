@@ -1,0 +1,15 @@
+register_01:
+  detail: '用户名和密码正确，登录成功'
+  method: POST
+#  请求数据
+  datas:
+    s: App.User.Login
+    app_key: '42B8E00160EF835C85934EC4306115A4'
+    username: '何军'
+    password: 'e10adc3949ba59abbe56e057f20f883e'
+#响应数据
+  ret: 200
+  err_code: 0
+  err_msg: ''
+  uuid: true
+  msg: true
