@@ -8,4 +8,3 @@ REPORT_PATH=os.path.join(BASE_PATH,"report")            #报告存放的绝对�
 
 DATA_PATH=os.path.join(BASE_PATH,'data')                #存放测试数据的绝对路径
 
-

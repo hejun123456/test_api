@@ -6,44 +6,31 @@ import smtplib
 import time
 import os
 def send_mail(file_new):
-    with open(file_new,'r',encoding='utf-8') as f:
+    with open(file_new,'rb') as f:
         mail_body = f.read()
 
-    # 第三方 SMTP 服务
-    mail_host='smtp.qq.com'   # 设置服务器
-    mail_user="1084276061@qq.com"
-    mail_pass="bkxukkiwpnwribid"    # 服务端授权码，不是邮箱的密码
-    sender=mail_user
-    receivers=["2945170175@qq.com"] # 接收邮件
-    mail_msg="""
-    <p>Python 邮件测试</p >
-    <p><a href=" baidu.com">百度链接</a ></p >
-    """
+    # 配置第三方服务
+    host='smtp.qq.com'              #设置服务器
+    username = '1084276061@qq.com'  #发件箱用户名
+    password = 'bkxukkiwpnwribid'   #发件箱密码
+    sender = '1084276061@qq.com'    #发件人邮箱
+    receiver=['2945170175@qq.com']  #收件人邮箱
 
-    message=MIMEMultipart()     # 创建一个带附件的实例
-    message['From']=Header("测试邮件标题",'utf-8')
-    message['To']=";".join(receivers)
-    subject="Python SMTP 邮件测试"
-    message['Subject']=Header(subject,'utf-8')
+     #邮件正文是MIMEText
+    msg = MIMEText(mail_body, 'HTML', 'utf-8')
+    # 邮件对象
+    msg['Subject'] = Header("接口自动化测试报告", 'utf-8').encode()
+    msg['From'] = Header(u'测试负责人 <%s>'%sender)
+    msg['To'] = Header(u'项目负责人 <%s>'%sender)
+    msg['date'] = time.strftime("%a,%d %b %Y %H:%M:%S %z")
+    #发送邮件
+    smtp = smtplib.SMTP()
+    smtp.connect(host,25)              # 邮箱服务器
+    smtp.login(username, password)      # 登录邮箱
+    smtp.sendmail(sender, receiver, msg.as_string())  # 发送者和接收者
+    smtp.quit()
+    print("邮件已发出！注意查收。")
 
-    # 邮件正文内容
-    message.attach(MIMEText(mail_msg,'html','utf-8'))
-    # 构造附件1
-    att1=MIMEText(mail_body,'base64','utf-8')
-    att1["Content-Type"]='application/octet-stream'
-    att1["Content-Disposition"]='attachment; filename = "test"'
-    message.attach(att1)
-
-    try:
-        smtpObj=smtplib.SMTP()
-        smtpObj.connect(mail_host,25)
-        smtpObj.login(mail_user,mail_pass)
-        smtpObj.sendmail(sender,receivers,message.as_string())
-        smtpObj.close()
-        print("邮件发送成功")
-    except Exception as e:
-        print("Error: 无法发送邮件")
-        print(str(e))
 
 
 #此处为将HTML文件夹中的所有文件返回并取最新的一个HTML文件

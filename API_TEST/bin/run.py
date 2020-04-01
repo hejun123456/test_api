@@ -13,7 +13,7 @@ from lib.send_mail import new_file,send_mail
 discover=unittest.defaultTestLoader.discover(CASE_PATH,"test_login.py")
 
 #执行并生成报告
-title="小白注册接口测试"
+title="接口测试"
 time_now=time.strftime("%Y%m%d%H%M%S")
 report_name="%s-接口测试报告" %(time_now)
 

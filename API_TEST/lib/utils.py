@@ -38,5 +38,3 @@ def get_url(api_name):
                 return api_c[1]
 
 
-
-
